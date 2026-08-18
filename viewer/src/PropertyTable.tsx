@@ -63,7 +63,10 @@ const COLUMNS: Column[] = [
   },
 ];
 
-const MIN_COLUMN_WIDTH = 60;
+// High enough that columns stay legible - below this, fill-to-width would
+// rather let the table overflow and scroll horizontally (e.g. on narrow
+// mobile screens) than crush every column into unreadable ellipsis fragments.
+const MIN_COLUMN_WIDTH = 90;
 const SEARCHABLE_COLUMNS = ["address", "county", "eircode", "description", "property_size_description"];
 const PAGE_SIZE_OPTIONS = [25, 50, 100, 200];
 
