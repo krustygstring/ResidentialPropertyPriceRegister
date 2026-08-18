@@ -1,14 +1,18 @@
 import initSqlJs, { type Database } from "sql.js";
 import { ungzip } from "pako";
 
-const WASM_URL = "/sql-wasm.wasm";
+// import.meta.env.BASE_URL reflects Vite's configured `base` (e.g. "/" in dev,
+// "/ResidentialPropertyPriceRegister/" when built for GitHub Pages) - these
+// are runtime fetch() calls, not HTML attributes, so Vite can't rewrite them
+// for us the way it does for asset references in index.html.
+const WASM_URL = `${import.meta.env.BASE_URL}sql-wasm.wasm`;
 // Deliberately not named "*.gz" - some static file servers (including Vite's
 // own dev server) auto-detect that extension and transparently decompress it
 // via a Content-Encoding response header before our JS ever sees the bytes,
 // which would break our own explicit pako.ungzip() call below. An unrecognized
 // extension guarantees we always receive the raw compressed bytes ourselves,
 // consistently across dev and whichever static host this ends up deployed to.
-const DB_URL = "/data/flat.sqlite.gzbin";
+const DB_URL = `${import.meta.env.BASE_URL}data/flat.sqlite.gzbin`;
 const CACHE_NAME = "ppr-sqlite-cache-v2";
 
 export interface PrebuiltLoadProgress {
