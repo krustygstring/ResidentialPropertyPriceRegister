@@ -1,0 +1,10 @@
+# Raw source data and derived intermediates - regenerate locally via
+# build_sqlite.py / split_property_sale.py. Not needed to run the app and too
+# large for GitHub's 100MB per-file limit. The only data file the app actually
+# needs is viewer/public/data/flat.sqlite.gzbin, which is tracked normally.
+/PPR-ALL.csv
+/PPR-ALL.json
+/property.csv
+/sale.csv
+/flat.sqlite
+/__pycache__/
